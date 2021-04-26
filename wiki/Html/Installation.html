@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RLgym Home Page</title>
+		<link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <script src="../JavaScript/scrolling_nav_bar.js"></script>
+  </head>
+  <body>
+      <div class="topnav" id="myTopnav">
+        <a href="Home.html">Home</a>
+        <a href="Installation.html">Installation</a>
+        <a href="Getting_Started.html">Getting Started</a>
+        <a href="Tutorials.html">Tutorials</a>
+        <a href="FAQ.html">FAQ</a>
+        <div class="dropdown">
+          <button class="dropbtn">More</button>
+          <div class="dropdown-content">
+            <a href="Resources.html">Resources</a>
+            <a href="#">Extra (404)</a>
+          </div>
+        </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
+      <img src="../Media/installation.png" alt="Installation" style="width:100%;height:400px;object-fit: scale-down;">
+      
+      <h3>Might consider reworking this and including common installation mistakes</h3>
+
+      <h1 id="the-rocket-league-gym">The Rocket League Gym</h1>
+      <p>This is a python API that can be used to treat the game <a href="https://www.rocketleague.com">Rocket League</a> as though it were an <a href="https://gym.openai.com">OpenAI Gym</a>-style environment for Reinforcement Learning projects. This API must be used with the accompanying Bakkesmod plugin.</p>
+      <h2 id="requirements">Requirements</h2>
+      <ul>
+      <li>A Windows 10 PC</li>
+      <li>The Steam version of Rocket League (Epic version might be supported but hasn&#39;t been tested)</li>
+      <li><a href="https://www.bakkesmod.com">Bakkesmod</a></li>
+      <li>The RLGym plugin for Bakkesmod (It&#39;s installed automatically by pip)</li>
+      <li>Python &gt;= 3.7</li>
+      </ul>
+      <h2 id="installation">Installation</h2>
+      <p>Install the library via pip:</p>
+      <pre><code>pip3 <span class="hljs-keyword">install</span> rlgym
+      </code></pre><p>Then simply run <code>example.py</code> from our repo to ensure everything works.</p>
+      <h2 id="usage">Usage</h2>
+      <p>To run a premade environment, call <code>rlgym.make</code> with the name of the environment you would like to create.
+      For example, the following code will create an instance of the Duels environment:</p>
+      <pre><code class="lang-python"><span class="hljs-keyword">import</span> rlgym
+      <span class="hljs-title">env</span> = rlgym.make(<span class="hljs-string">"Duel"</span>)
+      </code></pre>
+      <p>If you would like to build any environment with self-play enabled, include the keyword &quot;self&quot; (not case sensitive) in the name of the environment, like so:</p>
+      <pre><code class="lang-python"><span class="hljs-keyword">import</span> rlgym
+      <span class="hljs-title">env</span> = rlgym.make(<span class="hljs-string">"DuelSelf"</span>)
+      </code></pre>
+      <p>You can take a look at <code>example_self.py</code> to see how to handle observations and actions when dealing with more than one agent.</p>
+      <hr>
+      <p>RLGym comes with 3 pre-made environments:</p>
+      <ul>
+      <li>Duel</li>
+      <li>Doubles</li>
+      <li>Standard</li>
+      </ul>
+      <p>Each can be instantiated by calling <code>rlgym.make</code> with the name of the environment you would like to create. </p>
+      <p>RLGym also provides you the ability to create your own environments with a number of potential configurations through optional parameters: </p>
+      <pre><code class="lang-python">env = rlgym.make(<span class="hljs-string">"Duel"</span>, 
+                       ep_len_minutes: <span class="hljs-attribute">float</span>,
+                       game_speed: int,
+                       tick_skip: int,
+                       spawn_opponents: bool,
+                       random_resets: bool,
+                       team_size: int,
+                       terminal_conditions: List[rlgym<span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.TerminalCondition</span>],
+                       reward_fn: rlgym<span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.RewardFunction</span>,
+                       obs_builder: rlgym<span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.ObsBuilder</span>)
+      </code></pre>
+      <p>For more information on how to build a custom RLGym environment, please visit our Wiki.</p>
+      
+  </body>
+</html>
