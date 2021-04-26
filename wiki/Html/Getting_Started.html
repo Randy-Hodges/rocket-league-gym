@@ -23,5 +23,67 @@
         </div>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
       </div>
+      <img src="../Media/manufacturing-plan-e1392849473260.jpg" alt="Installation" style="width:100%;height:400px;object-fit: cover;">
       <h1>Getting Started</h1>
+      <div  style="float:right; width: 200px; height: 200px; margin: 10px; background-color: #fcc7c7; border: 10px solid rgb(199, 0, 0);">
+        <ul>
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="Installation.html">Installation</a></li>
+          <li><a href="Getting_Started.html">Getting Started</a></li>
+          <li><a href="Tutorials.html">Tutorials</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+        </ul>
+      </div>
+      <p>
+        If you've installed RLgym, we can now get to the interesting part of this all: Actually getting a bot running.
+        
+        One of the simplest ways to do this is to download stable baselines 3 (link) (Use their installation guide) and import stable baselines 3 at the top of your code as follows <code> from stable_baselines3 import PPO
+        </code>
+        Then training a bot only requires a few lines of code:<br><br>
+        <code>MAX_TIMESTEPS = 60000 <br>
+        env = rlgym.make('Default') <br>
+        model = PPO('MlpPolicy', env=env, verbose=1)<br>
+        model.learn(total_timesteps=MAX_TIMESTEPS)<br>
+        model.save('./agents/MyAgent')
+        </code>
+        <br><br>
+        This should open your eyes to this beautiful world of training a bot. Currently, however, stablebaselines only works in RLgym when there is one agent, e.g. you can only have one agent on the field at a time (you can play against psyonix bots through this method, but the psyonix bots break when we speed up the game for training).
+        <br>
+        </p>
+        <h3><u>Basics to Know</u></h3>
+        <h4>Observation Space</h4>
+        <p>The observation space is the input that your agent (bot) receives as input. These are things like your cars position and speed, the balls position and speed, the opponents data, and much more. You can customize your own observations by creating a new file, importing the necessary functions (basically copy/paste an observation file that is already working), and making sure to include an import statement for your new observation space in the init file that is located in the obs folder.
+        </p>
+        
+        <h4>Action Space</h4>
+        <p>The action space is the output that your agent (bot) sends to the game. The output space looks like the following: <br>
+        throttle:float; /// -1 for full reverse, 1 for full forward
+          steer:float; /// -1 for full left, 1 for full right
+          pitch:float; /// -1 for nose down, 1 for nose up
+          yaw:float; /// -1 for full left, 1 for full right
+          roll:float; /// -1 for roll left, 1 for roll right
+          jump:bool; /// true if you want to press the jump button
+          boost:bool; /// true if you want to press the boost button
+          handbrake:bool; /// true if you want to press the handbrake button
+        <br> It actually doesn’t look exactly like this in RLgym (I copied this from RLbot.org) but when you are building a bot that learns, it shouldn’t really matter which is which. Just know that the action space has a size of 8, and that those outputs are somewhat related to the above.
+        </p>
+        
+        <h4>Reward Functions</h4>
+        <p>Reward Functions are what tell your bot if it is doing bad or not. They are the equivalent of saying 'good boy' or 'bad dog' to a dog. This is a huge factor in how your bot learns, and you will likely spend most of your time trying to create a workable reward function. Training takes a long time and rewards that seem simple can often break or just not work. You can create your own reward function in a similar way to how you create a new observation function.</p>
+        
+        <h4>Rocket League Time Skip</h4>
+        <p>The way that RLgym works with rocket league is through using tick skips. In Rocket League, the physics engine runs at 120 ticks per second while the game is rendered 30 times per second. This means that there are 4 ticks per frame rendered, and that the physics system runs faster than the rendering of the game. By default, RLgym 'skips' every 8 ticks. By this I mean that when your agent creates an output, that output is repeated for 8 physics ticks in the game, and then a new output is entered into the game (repeats for 8 ticks) and so on. This reduces computation power needed to train the bot, but also means that it can’t input as frequently (however, 8 ticks is a VERY short time). You can reduce the tick skips if you want when you are initializing your environment. </p> 
+        
+        <h4>Using Custom Rewards and Observations</h4>
+        <p>I kinda mentioned this earlier maybe I’ll change those things and put them here. Oh, and make sure you import your custom files at the top of you implementation like <br><br><code>
+        from rlgym.utils.reward_functions import MyReward
+        from rlgym.utils.obs_builders import MyObs</code><br><br>
+        And when you create the environment, make sure to include your custom function. ex:<br><br>
+        <code>env = rlgym.make('Default', obs_builder=MyObs(), reward_fn=MyReward())
+        </code>
+        </p>
+        
+        <h3> Using Your own PPO Agent</h3>
+        <p>If you want an agent that can train against itself, you will need to create your own PPO function and the training process is a little more complicated than just model.learn(). Here is the general workflow [to be created later]</p>
+        
   </body>

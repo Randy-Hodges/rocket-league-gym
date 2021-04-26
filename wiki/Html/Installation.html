@@ -35,54 +35,27 @@
         </ul>
       </div>
 
-      <h3>Might consider reworking this and including common installation mistakes</h3>
+      <h2>Requirements</h2>
+      <ul>
+        <li>A Windows 10 PC</li>
+        <li> The Steam version of Rocket League (Epic version might be supported but hasn't been tested)</li>
+        <li>[Bakkesmod](https://www.bakkesmod.com)</li>
+        <li>The RLGym plugin for Bakkesmod (It's installed automatically by pip)</li>
+        <li> Python >= 3.7</li>
+      </body>ul>
+      <h2> Installation </h2>
+      <p>
+      Alright future me who needs a reference on how to reinstall this stuff on a new computer, here it is:
+      <br><br>
+      The most basic way to install rlgym is through the command line and by using<code> pip install rlgym</code> . <br><br>If you are like me, you would be installing this in a virtual environment through anaconda. Make sure you have anaconda, then create a new virtual environment and through the anaconda command prompt (Hit windows then type "anaconda prompt" to get there) change to your current environment to your virtual environment through the command <code>conda activate [name of your environment]</code> If, for example, I had called my new environment 'tf', my command would be <code>conda activate tf</code>. You should see that your environment has changed (I think there's a difference somewhere on the left side of the command prompt). From there, install rlgym using <code> pip install rlgym</code>
+      <br><br>
+      If you need to upgrade RLgym, use the command <code> pip install --upgrade rlgym</code> (while making sure you are in the correct virtual environment)
+      <br><br>
+      </p>
+      <h2>Troubleshooting</h2>
+      <p>If for some reason everything seems like it should work but the game isn't changing when you run code, make sure that your injector didn't magically disappear (hey it happened to me once). You can check by going into the folder RLgym>plugins>RLGym.dll. If it isn't there, clone it from github [insert github link] and put it back. 
 
-      <h1 id="the-rocket-league-gym">The Rocket League Gym</h1>
-      <p>This is a python API that can be used to treat the game <a href="https://www.rocketleague.com">Rocket League</a> as though it were an <a href="https://gym.openai.com">OpenAI Gym</a>-style environment for Reinforcement Learning projects. This API must be used with the accompanying Bakkesmod plugin.</p>
-      <h2 id="requirements">Requirements</h2>
-      <ul>
-      <li>A Windows 10 PC</li>
-      <li>The Steam version of Rocket League (Epic version might be supported but hasn&#39;t been tested)</li>
-      <li><a href="https://www.bakkesmod.com">Bakkesmod</a></li>
-      <li>The RLGym plugin for Bakkesmod (It&#39;s installed automatically by pip)</li>
-      <li>Python &gt;= 3.7</li>
-      </ul>
-      <h2 id="installation">Installation</h2>
-      <p>Install the library via pip:</p>
-      <pre><code>pip3 <span class="hljs-keyword">install</span> rlgym
-      </code></pre><p>Then simply run <code>example.py</code> from our repo to ensure everything works.</p>
-      <h2 id="usage">Usage</h2>
-      <p>To run a premade environment, call <code>rlgym.make</code> with the name of the environment you would like to create.
-      For example, the following code will create an instance of the Duels environment:</p>
-      <pre><code class="lang-python"><span class="hljs-keyword">import</span> rlgym
-      <span class="hljs-title">env</span> = rlgym.make(<span class="hljs-string">"Duel"</span>)
-      </code></pre>
-      <p>If you would like to build any environment with self-play enabled, include the keyword &quot;self&quot; (not case sensitive) in the name of the environment, like so:</p>
-      <pre><code class="lang-python"><span class="hljs-keyword">import</span> rlgym
-      <span class="hljs-title">env</span> = rlgym.make(<span class="hljs-string">"DuelSelf"</span>)
-      </code></pre>
-      <p>You can take a look at <code>example_self.py</code> to see how to handle observations and actions when dealing with more than one agent.</p>
-      <hr>
-      <p>RLGym comes with 3 pre-made environments:</p>
-      <ul>
-      <li>Duel</li>
-      <li>Doubles</li>
-      <li>Standard</li>
-      </ul>
-      <p>Each can be instantiated by calling <code>rlgym.make</code> with the name of the environment you would like to create. </p>
-      <p>RLGym also provides you the ability to create your own environments with a number of potential configurations through optional parameters: </p>
-      <pre><code class="lang-python">env = rlgym.make(<span class="hljs-string">"Duel"</span>, 
-                       ep_len_minutes: <span class="hljs-attribute">float</span>,
-                       game_speed: int,
-                       tick_skip: int,
-                       spawn_opponents: bool,
-                       random_resets: bool,
-                       team_size: int,
-                       terminal_conditions: List[rlgym<span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.TerminalCondition</span>],
-                       reward_fn: rlgym<span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.RewardFunction</span>,
-                       obs_builder: rlgym<span class="hljs-selector-class">.utils</span><span class="hljs-selector-class">.ObsBuilder</span>)
-      </code></pre>
-      <p>For more information on how to build a custom RLGym environment, please visit our Wiki.</p>
-      
+      <br><br> Maybe there is more to be done here but hey this is for me now and these are the issues I've had in the past.
+      </p>
   </body>
 </html>
